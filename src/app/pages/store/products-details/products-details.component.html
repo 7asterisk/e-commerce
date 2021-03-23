@@ -1,0 +1,177 @@
+<div class="uk-container">
+
+  <div uk-grid>
+    <div class="uk-width-1-2@m uk-text-center">
+      <img class="product-img" src="{{product?.imgs[imgIndex]}}" style="height:400px;object-fit: cover;" alt="">
+      <br>
+      <ul class="uk-thumbnav" uk-margin>
+        <li class="uk-active" *ngFor="let img of product?.imgs; let i=index"><a (click)="imgIndex = i"><img
+              src="{{img}}" width="100" alt=""></a>
+        </li>
+      </ul>
+    </div>
+    <div class="uk-width-1-2@m">
+      <h2>{{product?.pname}}</h2>
+      <p>₹ {{product?.price}}</p>
+      <p>
+        {{product?.desc}}
+      </p>
+      <div>
+        <input *ngIf="isAdded(product?.pid)<0" class="uk-input uk-form-width-xsmall" type="number" [(ngModel)]="qty">
+        <button class="uk-button uk-button-default uk-button-large cart-btn" *ngIf=" !authenticated "
+          uk-toggle="target: #login-modal">
+          <span uk-icon="cart"></span> &nbsp; &nbsp;
+          <span style="vertical-align: middle;"> Add to Cart</span>
+        </button>
+        <button *ngIf="authenticated && isAdded(product?.pid)<0"
+          class="uk-button uk-button-default uk-button-large cart-btn" (click)="addToCart(product.pid)">
+          <span uk-icon="cart"></span> &nbsp; &nbsp;
+          <span style="vertical-align: middle;"> Add to Cart</span>
+        </button>
+        <button *ngIf="authenticated && isAdded(product?.pid)>=0" [routerLink]="[ '/cart']"
+          class="uk-button uk-button-default uk-button-large cart-btn">
+          <span style="vertical-align: middle;">Product Added To Cart </span>
+        </button>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<br><br>
+
+<div class="uk-container uk-container-small">
+  <ul class="uk-flex-center" uk-tab>
+    <li><a href="#">Additional information </a></li>
+    <li><a href="#">Reviews (5)</a></li>
+  </ul>
+
+  <ul class="uk-switcher uk-margin">
+
+    <li>
+      <table class="uk-table uk-table-striped">
+        <tbody>
+          <tr>
+            <th>Handle height (ground to handle) </th>
+            <td>37-45″</td>
+          </tr>
+          <tr>
+            <th>Width </th>
+            <td>24″</td>
+          </tr>
+          <tr>
+            <th>Wheels</th>
+            <td>12″ air / wide track slick tread </td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <article class="uk-comment uk-comment-primary">
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+              <li><a href="#">12 days ago</a></li>
+            </ul>
+          </div>
+        </header>
+        <div class="uk-comment-body">
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </article>
+      <article class="uk-comment uk-comment-primary">
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+              <li><a href="#">12 days ago</a></li>
+            </ul>
+          </div>
+        </header>
+        <div class="uk-comment-body">
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </article>
+
+      <article class="uk-comment uk-comment-primary">
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+              <li><a href="#">12 days ago</a></li>
+            </ul>
+          </div>
+        </header>
+        <div class="uk-comment-body">
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </article>
+
+    </li>
+  </ul>
+
+  <br><br>
+
+
+
+  <hr class="hr-text" data-content="Related products">
+  <br>
+  <div class="uk-child-width-1-2 uk-child-width-1-3@m uk-grid-match uk-grid-small" uk-grid>
+
+    <div class="uk-text-center">
+      <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+        <a [routerLink]="[ '/product-detail', 123 ]"> <img class="product-img"
+            src="https://demo2wpopal.b-cdn.net/auros/wp-content/uploads/2018/10/1-32-600x675.jpg" alt="">
+        </a>
+        <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+          <button class="uk-button uk-button-text">
+            <span uk-icon="cart"></span> &nbsp; &nbsp;
+            <span style="vertical-align: middle;"> Add to Cart</span>
+          </button>
+        </div>
+      </div>
+      <h3 class="product-name">UNA Chair</h3>
+      <p class="porduct-price"> 4000Rs</p>
+    </div>
+
+    <div class="uk-text-center">
+      <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+        <img class="product-img" src="https://demo2wpopal.b-cdn.net/auros/wp-content/uploads/2018/10/1-32-600x675.jpg"
+          alt="">
+        <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+          <button class="uk-button uk-button-text">Add to Cart</button>
+        </div>
+      </div>
+
+      <h3>UNA Chair</h3>
+      <p>4000Rs</p>
+    </div>
+    <div class="uk-text-center">
+      <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+        <a> <img class="product-img"
+            src="https://demo2wpopal.b-cdn.net/auros/wp-content/uploads/2018/10/1-32-600x675.jpg" alt="">
+        </a>
+        <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+          <button class="uk-button uk-button-text">Add to Cart</button>
+        </div>
+      </div>
+      <h3>UNA Chair</h3>
+      <p>4000Rs</p>
+    </div>
+
+  </div>
+
+</div>
+
+<br><br>

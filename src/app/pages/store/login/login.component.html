@@ -1,0 +1,70 @@
+<div class="uk-container">
+  <ul uk-tab uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+    <li><a href="#">Login</a></li>
+    <li><a href="#">SingUp</a></li>
+  </ul>
+
+  <ul class="uk-switcher uk-margin">
+    <li>
+
+
+      <form>
+        <fieldset class="uk-fieldset">
+          <div class="uk-margin">
+            <input class="uk-input" type="email" [(ngModel)]="email" name="email" placeholder="email">
+          </div>
+
+          <div class="uk-margin">
+            <input class="uk-input" type="password" [(ngModel)]="password" name="password" placeholder="password">
+          </div>
+          <div class="uk-text-right">
+            <button class="uk-button uk-button-default" (click)="login()"> Login </button>
+          </div>
+        </fieldset>
+      </form>
+
+
+    </li>
+
+    <li>
+
+
+
+      <form>
+        <fieldset class="uk-fieldset">
+          <div class="uk-margin">
+            <input class="uk-input" type="text" [(ngModel)]="name" name="name" placeholder="Full Name">
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="text" [(ngModel)]="pno" name="pno" placeholder="Phone Number">
+          </div>
+
+          <div class="uk-margin">
+            <input class="uk-input" type="email" [(ngModel)]="email" name="email" placeholder="Emailid">
+          </div>
+
+          <div class="uk-margin">
+            <input class="uk-input" type="password" [(ngModel)]="password" name="password" placeholder="password">
+          </div>
+          <div class="uk-text-right">
+            <button class="uk-button uk-button-default" (click)="signup()"> sign up </button>
+          </div>
+        </fieldset>
+      </form>
+    </li>
+  </ul>
+
+  <hr class="hr-text" data-content="OR">
+  <br>
+
+  <div class="uk-text-center">
+
+    <button class="uk-button google uk-button-default" style="padding: 0 20px;">
+      <span uk-icon="google"></span> &nbsp;&nbsp;
+      <span style="vertical-align: inherit;"> Login With Google</span>
+    </button>
+
+  </div>
+</div>
+<br>
+<br>

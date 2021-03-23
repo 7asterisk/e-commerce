@@ -1,0 +1,57 @@
+<div class="uk-section">
+
+  <div class="uk-container">
+    <div uk-grid>
+      <div class="uk-width-3-4@m">
+        <div>
+          <table class="uk-table  uk-table-middle uk-table-responsive uk-table-divider">
+            <tbody>
+              <tr *ngFor="let product of products;let i = index">
+                <td><a (click)="deleteFromCart(product.products.pid)" class="uk-icon-link" uk-icon="icon: close;"></a>
+                </td>
+                <td><img src="{{product.products.imgs[0]}}" width="100" alt="">
+                </td>
+                <td>
+                  <a class="uk-link-reset" href="">{{product.products.pname}} </a>
+                </td>
+                <td>{{product.products.price}}</td>
+                <td>
+                  <div class="uk-button-group">
+                    <button class="uk-button uk-button-default "
+                      (click)="updateQty(product.products.pid,product.qty-1,i)"
+                      [attr.disabled]="product.qty==1? true:null">-</button>
+                    <input class="uk-input uk-form-width-small" (change)="updateQty(product.products.pid,product.qty,i)"
+                      [(ngModel)]="product.qty" min type="number">
+                    <button class="uk-button uk-button-default "
+                      (click)="updateQty(product.products.pid,product.qty+1,i)">+</button>
+                  </div>
+                </td>
+                <td>{{  product.qty * product.products.price}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="uk-width-1-4@m">
+        <div class="uk-card uk-card-default uk-card-small uk-text-center uk-card-body">
+          <h3 class="uk-card-title">Cart totals</h3>
+          <table class="uk-table uk-table-small uk-table-divider">
+            <tbody>
+              <tr>
+                <th>Subtotal</th>
+                <td>₹ {{subtotal}}</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>₹ {{subtotal}} </td>
+              </tr>
+            </tbody>
+          </table>
+          <button [routerLink]="[ '/checkout' ]" class="uk-button uk-button-default">
+            Proceed to checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>

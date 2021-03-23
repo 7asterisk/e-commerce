@@ -1,0 +1,15 @@
+{
+  "hosting": [{
+    "public": "dist/aranya-exim",
+    "site": "onlinesp",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }]
+  }]
+}

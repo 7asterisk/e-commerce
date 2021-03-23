@@ -1,0 +1,16 @@
+.uk-input,
+.uk-select:not([multiple]):not([size]) {
+  height: 57px;
+}
+
+.uk-input,
+.uk-select,
+.uk-textarea {
+  padding: 0 0px 0px 15px;
+  border: 2px solid #000;
+}
+
+.cart-btn {
+  margin-left: -2px;
+  line-height: 51px;
+}

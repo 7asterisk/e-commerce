@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../node_modules/uikit/src/scss/mixins-theme.scss";
+@import "../node_modules/uikit/src/scss/uikit-theme.scss";
+
+.uk-button-default {
+  background-color: transparent;
+  color: #151515;
+  border: 2px solid #151515;
+  font-weight: 700;
+}
+
+.uk-button-default:hover,
+.uk-button-default:focus {
+  background-color: #f26723;
+  color: #fff;
+  border-color: #f26723;
+}
+
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+
+  &:before {
+    content: "";
+    // use the linear-gradient for the fading effect
+    // use a solid background color for a solid bar
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+
+  &:after {
+    content: attr(data-content);
+    content: attr(data-content);
+    position: relative;
+    font-weight: 700;
+    display: inline-block;
+    color: black;
+    font-size: x-large;
+    padding: 0 0.5em;
+    line-height: 1;
+    background-color: #fcfcfa;
+  }
+}

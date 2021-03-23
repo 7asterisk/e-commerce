@@ -1,0 +1,39 @@
+.uk-light .uk-navbar-nav > li > a {
+  color: #151515;
+  font-weight: 600;
+}
+
+.uk-light .uk-navbar-nav > li.uk-active > a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.uk-light {
+  background-color: rgba(255, 255, 255, 0.795);
+}
+
+.uk-navbar-container:not(.uk-navbar-transparent) {
+  background: #fff;
+}
+
+.uk-navbar-nav > li.uk-active > a {
+  color: #ffff;
+  background-color: #f26723;
+}
+
+.uk-navbar-nav > li > a {
+  color: #151515;
+  font-weight: 600;
+}
+
+Li {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.uk-badge {
+  color: #fff;
+  background-color: #eb7025;
+  border-radius: 50px 50px 50px 50px;
+  padding: 2px 2px 2px 2px;
+  margin: -15px 0 0 -1px;
+}
