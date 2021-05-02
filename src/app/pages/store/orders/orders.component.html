@@ -1,0 +1,87 @@
+<div class="uk-section">
+
+    <div class="uk-container">
+        <br>
+        <div uk-grid>
+            <div class="uk-width-2-3@m">
+                <div *ngIf="allOrders.length === 0" class="uk-text-center">
+                    <h4>EMPTY CART!</h4>
+                    <img src="../../../../assets/empty-cart.png" alt=""> <br>
+                    <button class="uk-button uk-button-text">Go To Shop</button>
+                </div>
+
+
+                <div *ngIf="allOrders.length>0">
+                    <h4>Order On <small>12/2/2021</small> </h4>
+                    <table class="uk-table  uk-table-middle uk-table-responsive uk-table-divider">
+                        <tbody>
+                            <tr>
+                            </tr>
+                            <tr *ngFor="let product of order.products;let i = index">
+                                <td><img src="{{product.products.images[0]}}" width="100" alt="">
+                                </td>
+                                <td>
+                                    <a class="uk-link-reset" href="">{{product.products.pname}} </a>
+                                </td>
+                                <td>
+                                    Delivery On: {{product.products.rentingDate.toDate() |date:'dd/MMMM/Y'}} <br>
+                                    Return Date: {{product.products.returnDate.toDate() |date:'dd/MMMM/Y'}}
+                                </td>
+                                <td>Price: ₹ {{product.products.price}}
+                                    <br>
+                                    Deposit: ₹ {{product.products.deposit}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <div class="uk-width-1-3@m">
+                <div *ngIf="order">
+                    <h4>Shipping Details</h4>
+                    <h3 class="uk-card-title">{{order.shippingDetails.name}}</h3>
+                    <p>{{order.shippingDetails.address}} <strong>{{order.shippingDetails.pincode}}</strong> </p>
+                    <p>
+                        mobile:{{order.shippingDetails.phone}}
+                    </p>
+                    <p>
+                        email:{{order.shippingDetails.email}}
+                    </p>
+
+                </div>
+            </div>
+            <div class="uk-width-1-1">
+                <div *ngIf="order">
+                    <h4>Shipping Status</h4>
+                    <div uk-grid>
+                        <div class="uk-width-1-4@m">
+                            <strong>Payment</strong> <br>
+                            <span>Amount: 1000 </span><br>
+                            <span>mode: Cash on Delivery </span>
+                        </div>
+                        <div class="uk-width-1-4@m">
+                            <strong>Refund</strong> <br>
+                            <span>Amount: 1000 </span><br>
+                            <span>mode: Cash on Return </span>
+                        </div>
+                        <div class="uk-width-1-4@m">
+                            <strong>Delivery</strong> <br>
+                            <span>Status: Pending </span><br>
+                        </div>
+                        <div class="uk-width-1-4@m">
+                            <strong>Return</strong> <br>
+                            <span>Status: Pending </span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

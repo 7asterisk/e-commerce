@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBNBnIDleXqq32rCmYE7dssgIxZ5H7R958',
-    authDomain: 'online-shopping-7899f.firebaseapp.com',
-    databaseURL: 'https://online-shopping-7899f.firebaseio.com',
-    projectId: 'online-shopping-7899f',
-    storageBucket: 'online-shopping-7899f.appspot.com',
-    messagingSenderId: '1051497425985',
-    appId: '1:1051497425985:web:5adef3d415e6bc13242ac0',
-    measurementId: 'G-FVEY30MVB3'
+    apiKey: "AIzaSyCA00wFXVIWOMYpcFplvCftiuVtoth26VM",
+    authDomain: "vidarita-f6bfb.firebaseapp.com",
+    projectId: "vidarita-f6bfb",
+    storageBucket: "vidarita-f6bfb.appspot.com",
+    messagingSenderId: "449628280745",
+    appId: "1:449628280745:web:0b55c7325e002a358616b8",
+    measurementId: "G-NGMFQDZ82B"
   }
 };
 

@@ -1,20 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
-@import "../node_modules/uikit/src/scss/variables-theme.scss";
-@import "../node_modules/uikit/src/scss/mixins-theme.scss";
-@import "../node_modules/uikit/src/scss/uikit-theme.scss";
+@import "./assets/uikit.min.css";
+
+@import"../node_modules/primeicons/primeicons.css";
+@import"../node_modules/primeng/resources/themes/saga-blue/theme.css";
+// @import"../node_modules/primeng/resources/primeng.min.css";
+
+@font-face {
+  font-family: 'amsterdam';
+  src: url('./assets/fonts/amsterdam-four-ttf.ttf') format('truetype');
+
+}
+
+body{
+  font-family: 'Nunito';
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+h4,h1{
+  font-family: 'Days One', sans-serif;
+    color: #000;
+}
+
 
 .uk-button-default {
   background-color: transparent;
-  color: #151515;
-  border: 2px solid #151515;
-  font-weight: 700;
+  color: #1d2445;
+  border: 2px solid #1d2445;
+  font-weight: 600;
+}
+.uk-tab > .uk-active > a{
+  border-color:#000
 }
 
 .uk-button-default:hover,
 .uk-button-default:focus {
-  background-color: #f26723;
+  background-color: #000;
   color: #fff;
-  border-color: #f26723;
+  border-color: #000;
+}
+
+.uk-button-secondary{
+  background-color: #1d2445;
+}
+
+.uk-button-secondary:focus, .uk-button-secondary:hover{
+  background-color: #333;
 }
 
 .hr-text {
@@ -51,4 +81,15 @@
     line-height: 1;
     background-color: #fcfcfa;
   }
+}
+
+
+.uk-table th {
+  padding: 16px 12px;
+  text-align: left;
+  vertical-align: baseline;
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #999;
+  text-transform: uppercase;
 }

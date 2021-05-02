@@ -25,17 +25,9 @@ export class LoginComponent implements OnInit {
   login() {
     // console.log(document.getElementById('login-modal'));
     this.authService.loginWithEmail(this.email, this.password).then(() => {
-      UIkit.modal.dialog('login-modal').hide();
-      const currentUrl = this.router.url;
-      this.router.navigate([currentUrl]);
-    });
-  }
-  signup() {
-    this.authService.singup(this.email, this.password).then((user) => {
-      console.log(user.user.uid);
-      const userData = { name: this.name, email: this.email, pno: this.pno };
-      this.dataService.addDoc('user', user.user.uid, userData);
-
+      this.router.navigate(['products']);
+    }).catch(e => {
+      UIkit.notification({ message: e.message, pos: 'top-right', status: 'danger' });
     });
   }
   ngOnInit(): void {

@@ -45,7 +45,7 @@ export class DataService {
   }
   addCollection(main, data) {
     this.itemsCollection = this.db.collection(main);
-    this.itemsCollection.add(data);
+    return this.itemsCollection.add(data);
   }
   getxyz(main, name): Observable<any[]> {
     this.itemDoc = this.afs.doc(main + '/' + name);
@@ -54,7 +54,7 @@ export class DataService {
 
   addDoc(main, name, data) {
     this.itemDoc = this.afs.doc(main + '/' + name);
-    this.itemDoc.set(data);
+    return this.itemDoc.set(data);
   }
   update(data, name, main) {
     this.itemDoc = this.afs.doc(main + '/' + name);
@@ -63,7 +63,7 @@ export class DataService {
 
   deleteDoc(main, name) {
     this.itemDoc = this.afs.doc(main + '/' + name);
-    this.itemDoc.delete();
+    return this.itemDoc.delete();
   }
 
   getDocById(main) {

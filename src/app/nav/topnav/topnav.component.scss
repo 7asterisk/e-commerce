@@ -1,11 +1,10 @@
 .uk-light .uk-navbar-nav > li > a {
-  color: #151515;
-  font-weight: 600;
+  color: #1d2445;
 }
 
-.uk-light .uk-navbar-nav > li.uk-active > a {
-  color: #fff;
-  font-weight: 600;
+.uk-light .uk-navbar-nav > li.uk-active > a,.uk-navbar-nav > li.uk-active > a {
+ background: #1d2445;
+ color: #fff;
 }
 
 .uk-light {
@@ -16,17 +15,16 @@
   background: #fff;
 }
 
-.uk-navbar-nav > li.uk-active > a {
-  color: #ffff;
-  background-color: #f26723;
+.uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle{
+  min-height: 69px;
+    padding: 11px 30px;
 }
 
 .uk-navbar-nav > li > a {
-  color: #151515;
-  font-weight: 600;
+  color: #1d2445;
 }
 
-Li {
+li {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
@@ -36,4 +34,20 @@ Li {
   border-radius: 50px 50px 50px 50px;
   padding: 2px 2px 2px 2px;
   margin: -15px 0 0 -1px;
+}
+
+
+.logo{
+  font-family: amsterdam;
+    color: #1d2445;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.uk-offcanvas-bar{
+  background: #fff;
+}
+
+.uk-offcanvas-bar .uk-nav-primary>li>a{
+  color: #000;
 }

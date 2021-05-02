@@ -1,30 +1,21 @@
-<div *ngIf="url=='Home' !! !url" class="uk-section-primary1 uk-preserve-color uk-dark"
-  [style.background-image]="getBackground(slide.img)"
-  style=" background: no-repeat bottom center / cover; height: 500px;">
-
+<div class="uk-section-primary1 uk-preserve-color uk-dark">
   <div
     uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
-
     <nav class="uk-navbar-container ">
       <div class="uk-container uk-container-expand ">
         <div uk-navbar>
           <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav ">
-              <li [routerLink]="[ '/home']" routerLinkActive="uk-active">
-                <!-- <img src="../../assets/logo.png" alt="" style="height:50px;margin-left: 35px;"> -->
-              </li>
-            </ul>
-
+            <a class="uk-navbar-item uk-logo" [routerLink]="[ '/home']"><span class="logo"> Vidarita </span></a>
           </div>
           <div class="uk-navbar-right uk-visible@m">
             <ul class="uk-navbar-nav ">
               <li [routerLink]="[ '/home']" routerLinkActive="uk-active"><a>Home</a></li>
               <li [routerLink]="[ '/about-us']" routerLinkActive="uk-active"><a>About Us</a></li>
-              <li [routerLink]="[ '/products']" routerLinkActive="uk-active"> <a>Shop</a> </li>
               <li [routerLink]="[ '/contact-us']" routerLinkActive="uk-active"><a> Contact Us</a></li>
-              <li *ngIf="!uid" uk-toggle="target: #login-modal"><a> Login</a>
+              <li [routerLink]="[ '/products']" routerLinkActive="uk-active"> <a>Shop</a> </li>
+              <li *ngIf="!uid" [routerLink]="[ '/signup']" routerLinkActive="uk-active"><a> SignUp</a>
               </li>
-              <li [routerLink]="[ '/cart']" routerLinkActive="uk-active" *ngIf="uid">
+              <li [routerLink]="[ '/cart']" *ngIf="uid">
                 <a>
                   <span uk-icon="icon: cart; ratio: 1.2"></span>
                   <span class="uk-badge" *ngIf="cartProduct?.length>0 && url != 'Cart'">{{cartProduct?.length}}</span>
@@ -37,153 +28,51 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li class="uk-active"><a href="#">Orders</a></li>
+                    <li class="uk-active"><a [routerLink]="[ '/orders']">Orders</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a (click)="logout()">Logout</a></li>
                   </ul>
                 </div>
               </li>
-
-            </ul>
-
-          </div>
-          <div class="uk-navbar-right uk-hidden@m">
-            <ul class="uk-navbar-nav ">
-              <li style="background-color:  #f26723;">
-                <a class="uk-button" style="color: #fff;" uk-toggle="target: #sidenav"><span
-                    uk-icon="icon: menu ;ratio: 2"></span></a>
-              </li>
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-    </nav>
-  </div>
-
-
-
-  <div class="uk-section ">
-    <div class="uk-container">
-
-
-      <div class="uk-child-width-expand@s uk-text-left" uk-grid>
-        <div style="align-self: center;">
-
-          <h1 class="uk-text-bold uk-text-uppercase">
-            {{slide.heading}}
-          </h1>
-
-
-          <p class="uk-text-large uk-text-capitalize">
-            {{slide.subheading}}
-          </p>
-          <button class="uk-button uk-button-default " [routerLink]="[ '/products']">Shop Now </button>
-
-        </div>
-        <div class="bounce">
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<div *ngIf="url!='Home'" class="uk-section-primary1 uk-preserve-color uk-dark"
-  style=" background:url(https://demo2.wpopal.com/auros/wp-content/uploads/2018/10/breadcrumb.jpg) no-repeat top center / cover; height: 250px;">
-
-  <div
-    uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
-
-    <nav class="uk-navbar-container ">
-      <div class="uk-container uk-container-expand ">
-        <div uk-navbar>
-          <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav ">
-              <li [routerLink]="[ '/home']" routerLinkActive="uk-active">
-                <!-- <img src="../../assets/logo.png" alt="" style="height:50px;margin-left: 35px;"> -->
-              </li>
-            </ul>
-
-          </div>
-          <div class="uk-navbar-right uk-visible@m">
-            <ul class="uk-navbar-nav ">
-              <li [routerLink]="[ '/home']" routerLinkActive="uk-active"><a>Home</a></li>
-              <li [routerLink]="[ '/about-us']" routerLinkActive="uk-active"><a>About Us</a></li>
-              <li [routerLink]="[ '/products']" routerLinkActive="uk-active"> <a>Shop</a> </li>
-              <li [routerLink]="[ '/contact-us']" routerLinkActive="uk-active"><a> Contact Us</a></li>
-              <li *ngIf="!uid" uk-toggle="target: #login-modal"><a> Login</a>
-              </li>
-              <li [routerLink]="[ '/cart']" routerLinkActive="uk-active" *ngIf="uid">
-                <a>
-                  <span uk-icon="icon: cart; ratio: 1.2"></span>
-                  <span class="uk-badge" *ngIf="cartProduct?.length>0 && url != 'Cart'">{{cartProduct?.length}}</span>
-                </a>
-              </li>
-              <li *ngIf="uid">
-                <a href="#">
-                  <span uk-icon="icon: user; ratio: 1.2">
-                  </span>
-                </a>
-                <div class="uk-navbar-dropdown">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li class="uk-active"><a href="#">Orders</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a (click)="logout()">Logout</a></li>
-                  </ul>
-                </div>
-              </li>
-
             </ul>
           </div>
           <div class="uk-navbar-right uk-hidden@m">
             <ul class="uk-navbar-nav ">
-              <li style="background-color:  #f26723;">
-                <a class="uk-button" style="color: #fff;" uk-toggle="target: #sidenav"><span
-                    uk-icon="icon: menu ;ratio: 2"></span></a>
+              <li>
+                <a class="uk-button" uk-toggle="target: #sidenav"><span uk-icon="icon: menu ;ratio: 2"></span></a>
               </li>
             </ul>
-
           </div>
-
         </div>
       </div>
     </nav>
   </div>
-
-
-
-  <div class="uk-section ">
-    <div class="uk-container uk-text-bold uk-text-capitalize uk-text-center">
-      <h3 class="uk-text-uppercase">{{url}}</h3>
-    </div>
-  </div>
-
 </div>
+
 
 
 <div id="sidenav" uk-offcanvas="overlay: true;flip: true">
   <div class="uk-offcanvas-bar uk-flex uk-flex-column">
     <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <br>
+    <p class="logo" style="margin-top: -24px;">Vidarita</p>
 
     <ul class="uk-nav uk-nav-primary  uk-margin-auto-vertical uk-text-right">
       <li [routerLink]="[ '/home']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"><a>Home</a></li>
       <li [routerLink]="[ '/about-us']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"><a>About Us</a></li>
-      <li [routerLink]="[ '/products']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"> <a>Shop</a> </li>
       <li [routerLink]="[ '/contact-us']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"><a> Contact Us</a>
       </li>
-      <li [routerLink]="[ '/cart']" routerLinkActive="uk-active" uk-toggle="target: #sidenav">
+      <li [routerLink]="[ '/products']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"> <a>Shop</a> </li>
+
+      <li *ngIf="!uid" [routerLink]="[ '/signup']" routerLinkActive="uk-active"><a> signup</a>
+
+
+      <li *ngIf="uid" [routerLink]="[ '/cart']" uk-toggle="target: #sidenav">
         <a> Cart</a>
       </li>
-
-      <li class="uk-active"><a href="#">Orders</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a (click)="logout()">Logout</a></li>
+      <li *ngIf="uid"><a href="#">Orders</a></li>
+      <li *ngIf="uid"><a href="#">Profile</a></li>
+      <li *ngIf="uid"><a (click)="logout()">Logout</a></li>
     </ul>
-
   </div>
 </div>
-
-<br><br>

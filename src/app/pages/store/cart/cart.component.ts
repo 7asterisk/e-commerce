@@ -12,36 +12,15 @@ export class CartComponent implements OnInit {
   products = [];
   uid;
   subtotal = 0;
+
+  shippingDetails = { name: '', address: '', pincode: '', rentingDate: '', phone: '', email: '' }
+  shippingProduct = [];
+
   constructor(private dataService: DataService, private authService: AuthService) {
-    this.authService.getUserId().subscribe(user => {
-      if (user) {
-        this.uid = user.uid;
-        this.dataService.getCollecion(`user/${user.uid}/cart`).subscribe(cartData => {
-          this.cartDetail = cartData;
-          this.products = [];
-          this.subtotal = 0;
-          this.cartDetail.forEach(element => {
-            this.dataService.getxyz('products', element.pid).subscribe(product => {
-              this.subtotal = this.subtotal + product['price'] * element.qty;
-              const cartProduct = { products: product, qty: element.qty, total: product['price'] * element.qty };
-              this.products.push(cartProduct);
-            });
-          });
-        });
-      }
-      else {
-        this.uid = null;
-      }
-    });
   }
+
   deleteFromCart(pid) {
     this.dataService.deleteDoc(`user/${this.uid}/cart`, pid);
-    this.subtotal = 0;
-    this.products.forEach(element => {
-      if (element.products.pid != pid) {
-        this.subtotal = element.qty * element.products.price;
-      }
-    });
   }
 
   updateQty(pid, qty, i) {
@@ -50,7 +29,6 @@ export class CartComponent implements OnInit {
       this.subtotal = 0;
       this.products.forEach(element => {
         this.subtotal = element.qty * element.products.price;
-        console.log(this.subtotal);
       });
       this.dataService.addDoc(`user/${this.uid}/cart`, pid, { pid: pid, qty: qty });
     } else {
@@ -60,9 +38,52 @@ export class CartComponent implements OnInit {
         this.subtotal = element.qty * element.products.price;
       });
     }
+  }
+
+
+  placeOrder() {
+
+    this.dataService.addCollection(`user/${this.uid}/order`, { shippingDetails: this.shippingDetails, products: this.products }).then(() => {
+      this.cartDetail.forEach(element => {
+        this.dataService.deleteDoc(`user/${this.uid}/cart`, element.pid);
+      });
+    });
+
+    // console.log(this.shippingDetails);
+    // console.log(this.products);
 
   }
+
   ngOnInit(): void {
+    this.authService.getUserId().subscribe(user => {
+      if (user) {
+        this.uid = user.uid;
+        this.dataService.getCollecion(`user/${user.uid}/cart`).subscribe(cartData => {
+          this.cartDetail = cartData;
+          this.products = [];
+          this.subtotal = 0;
+          console.log(cartData);
+          if (cartData.length === 0) {
+            this.products = [];
+            return;
+          }
+          this.cartDetail.forEach(element => {
+            this.dataService.getxyz('categories/' + element.catId + '/products', element.pid).subscribe(product => {
+              this.subtotal = this.subtotal + product['price'] + product['deposit'];
+              product["id"] = element.pid;
+              product["rentingDate"] = element.rentingDate;
+              product["returnDate"] = element.returnDate;
+              const cartProduct = { products: product, total: product['price'] + product['deposit'] };
+              this.products.push(cartProduct);
+            });
+          });
+        });
+      }
+      else {
+        this.uid = null;
+      }
+    });
+
   }
 
 }

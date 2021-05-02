@@ -17,8 +17,8 @@ export class CheckoutComponent implements OnInit {
         this.dataService.getCollecion(`user/${user.uid}/cart`).subscribe(cartData => {
           this.subtotal = 0;
           cartData.forEach(element => {
-            this.dataService.getxyz('products', element.pid).subscribe(product => {
-              this.subtotal = this.subtotal + product['price'] * element.qty;
+            this.dataService.getxyz('categories/' + element.catId + '/products', element.pid).subscribe(product => {
+              this.subtotal = this.subtotal + product['price'] + product['deposit'];
             });
           });
         });
