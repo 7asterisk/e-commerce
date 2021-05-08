@@ -13,6 +13,8 @@ export class OrdersComponent implements OnInit {
   uid;
   allOrders = [];
   order;
+  totalPrice: number;
+  totalDeposit: number;
 
   constructor(private dataService: DataService, private authService: AuthService) {
   }
@@ -30,11 +32,16 @@ export class OrdersComponent implements OnInit {
       if (user) {
         this.uid = user.uid;
         this.dataService.getCollecion(`user/${user.uid}/order`).subscribe(cartData => {
-
+          this.totalPrice = 0;
+          this.totalDeposit = 0;
           console.log(cartData);
-          this.order = cartData[0];
           this.allOrders = [...cartData];
-
+          this.allOrders.forEach(element => {
+            element.products.forEach(pr => {
+              this.totalPrice += pr.total;
+              this.totalDeposit += pr.deposit;
+            });
+          });
         });
       }
       else {

@@ -22,8 +22,8 @@
                   <a class="uk-link-reset" href="">{{product.products.pname}} </a>
                 </td>
                 <td>
-                  Date: {{product.products.rentingDate.toDate() |date:'dd/MMMM/Y'}} <br>
-                  Return: {{product.products.returnDate.toDate() |date:'dd/MMMM/Y'}}
+                  Delivery On: {{product.products.rentingDate.toDate() |date:'dd/MMMM/Y'}} <br>
+                  Return Date: {{product.products.returnDate.toDate() |date:'dd/MMMM/Y'}}
                 </td>
                 <td>Price: ₹ {{product.products.price}}
                   <br>
@@ -80,9 +80,9 @@
               <input class="uk-input" type="text" [(ngModel)]="shippingDetails.email" name="email">
             </div>
           </div>
-
-          <p>Total: ₹ {{subtotal}} </p>
-
+          <p class="uk-width-1-2@s">Rent Charge: ₹ {{totalRent}} </p>
+          <p class="uk-width-1-2@s">Refund : ₹ {{totalRefund}}</p>
+          <p class="uk-width-1-1@s">Total Amount: ₹ {{subtotal}} </p>
           <div class="uk-width-1-1@s">
             <button class="uk-button uk-button-secondary" type="submit" [disabled]="products.length === 0"
               (click)="placeOrder()">

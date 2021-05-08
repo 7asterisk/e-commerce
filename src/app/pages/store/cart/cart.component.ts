@@ -13,9 +13,10 @@ export class CartComponent implements OnInit {
   uid;
   subtotal = 0;
 
-  shippingDetails = { name: '', address: '', pincode: '', rentingDate: '', phone: '', email: '' }
+  shippingDetails = { name: '', address: '', pincode: '', orderDate: Date.now(), phone: '', email: '' }
   shippingProduct = [];
-
+  totalRefund = 0;
+  totalRent = 0;
   constructor(private dataService: DataService, private authService: AuthService) {
   }
 
@@ -70,10 +71,12 @@ export class CartComponent implements OnInit {
           this.cartDetail.forEach(element => {
             this.dataService.getxyz('categories/' + element.catId + '/products', element.pid).subscribe(product => {
               this.subtotal = this.subtotal + product['price'] + product['deposit'];
+              this.totalRefund += product['deposit'];
+              this.totalRent += product['price'];
               product["id"] = element.pid;
               product["rentingDate"] = element.rentingDate;
               product["returnDate"] = element.returnDate;
-              const cartProduct = { products: product, total: product['price'] + product['deposit'] };
+              const cartProduct = { products: product, total: product['price'] + product['deposit'], price: product['price'], deposit: product['deposit'] };
               this.products.push(cartProduct);
             });
           });
