@@ -16,7 +16,7 @@ export class AuthService {
   }
   signOut(): void {
     this.af.signOut().then(() => {
-      this.router.navigate(['products']);
+      this.router.navigate(['/']);
     })
   }
 

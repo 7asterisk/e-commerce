@@ -35,16 +35,16 @@ export class DataService {
   private itemsCollection: AngularFirestoreCollection<any>;
   private itemDoc: AngularFirestoreDocument<any>;
 
-  constructor(public db: AngularFirestore, public afs: AngularFirestore, private http: HttpClient) {
+  constructor(public afs: AngularFirestore, private http: HttpClient) {
     // db.collection('xyz').valueChanges();
   }
 
   getCollecion(main) {
-    this.itemsCollection = this.db.collection<any>(main);
+    this.itemsCollection = this.afs.collection<any>(main);
     return this.itemsCollection.valueChanges();
   }
   addCollection(main, data) {
-    this.itemsCollection = this.db.collection(main);
+    this.itemsCollection = this.afs.collection(main);
     return this.itemsCollection.add(data);
   }
   getxyz(main, name): Observable<any[]> {
@@ -66,8 +66,30 @@ export class DataService {
     return this.itemDoc.delete();
   }
 
+  getActiveOrders(userId) {
+    console.log(userId);
+
+    return this.afs.collection('orders', ref => ref.where('userId', '==', userId).where('status', '==', 'active')).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data: Object = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getPreviousOrders(userId) {
+    return this.afs.collection('orders', ref => ref.where('userId', '==', userId).where('status', '==', 'completed')).valueChanges();
+  }
+  getCalcledOrders(userId) {
+    return this.afs.collection('orders', ref => ref.where('userId', '==', userId).where('status', '==', 'cancled')).valueChanges();
+  }
+
+
   getDocById(main) {
-    this.itemsCollection = this.db.collection<any>(main);
+    this.itemsCollection = this.afs.collection<any>(main);
     return this.itemsCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {

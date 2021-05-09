@@ -64,15 +64,16 @@
       </li>
       <li [routerLink]="[ '/products']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"> <a>Shop</a> </li>
 
-      <li *ngIf="!uid" [routerLink]="[ '/signup']" routerLinkActive="uk-active"><a> signup</a>
+      <li *ngIf="!uid" [routerLink]="[ '/signup']" routerLinkActive="uk-active" uk-toggle="target: #sidenav"><a>
+          signup</a>
 
 
       <li *ngIf="uid" [routerLink]="[ '/cart']" uk-toggle="target: #sidenav">
         <a> Cart</a>
       </li>
-      <li *ngIf="uid"><a href="#">Orders</a></li>
+      <li *ngIf="uid"><a [routerLink]="[ '/orders']" uk-toggle="target: #sidenav">Orders</a></li>
       <li *ngIf="uid"><a href="#">Profile</a></li>
-      <li *ngIf="uid"><a (click)="logout()">Logout</a></li>
+      <li *ngIf="uid"><a (click)="logout()" uk-toggle="target: #sidenav">Logout</a></li>
     </ul>
   </div>
 </div>

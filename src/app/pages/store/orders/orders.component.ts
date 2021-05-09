@@ -15,26 +15,20 @@ export class OrdersComponent implements OnInit {
   order;
   totalPrice: number;
   totalDeposit: number;
-
+  loading = true;
   constructor(private dataService: DataService, private authService: AuthService) {
   }
-
-  deleteFromCart(pid) {
-    this.dataService.deleteDoc(`user/${this.uid}/cart`, pid);
-  }
-
-
-
 
 
   ngOnInit(): void {
     this.authService.getUserId().subscribe(user => {
       if (user) {
         this.uid = user.uid;
-        this.dataService.getCollecion(`user/${user.uid}/order`).subscribe(cartData => {
+        this.dataService.getActiveOrders(this.uid).subscribe(cartData => {
           this.totalPrice = 0;
           this.totalDeposit = 0;
           console.log(cartData);
+          this.loading = false;
           this.allOrders = [...cartData];
           this.allOrders.forEach(element => {
             element.products.forEach(pr => {
@@ -43,9 +37,6 @@ export class OrdersComponent implements OnInit {
             });
           });
         });
-      }
-      else {
-        this.uid = null;
       }
     });
 

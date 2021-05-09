@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   products = [];
   uid;
   subtotal = 0;
+  loading = true;
 
   shippingDetails = { name: '', address: '', pincode: '', orderDate: Date.now(), phone: '', email: '' }
   shippingProduct = [];
@@ -43,15 +44,11 @@ export class CartComponent implements OnInit {
 
 
   placeOrder() {
-
-    this.dataService.addCollection(`user/${this.uid}/order`, { shippingDetails: this.shippingDetails, products: this.products }).then(() => {
+    this.dataService.addCollection('orders', { shippingDetails: this.shippingDetails, products: this.products, userId: this.uid, status: 'active' }).then(() => {
       this.cartDetail.forEach(element => {
         this.dataService.deleteDoc(`user/${this.uid}/cart`, element.pid);
       });
     });
-
-    // console.log(this.shippingDetails);
-    // console.log(this.products);
 
   }
 
@@ -64,6 +61,7 @@ export class CartComponent implements OnInit {
           this.products = [];
           this.subtotal = 0;
           console.log(cartData);
+          this.loading = false;
           if (cartData.length === 0) {
             this.products = [];
             return;

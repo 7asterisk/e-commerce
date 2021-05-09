@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './pages/store/authui/signup/signup.component';
 import { LoginComponent } from './pages/store/authui/login/login.component';
 import { OrdersComponent } from './pages/store/orders/orders.component';
+import { ProfileComponent } from './pages/store/profile/profile.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { OrdersComponent } from './pages/store/orders/orders.component';
     ContactUsComponent,
     LoginComponent,
     SignupComponent,
-    OrdersComponent
+    OrdersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
